@@ -2,8 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Chat } from './chat.entity';
+import { Chat } from './entity/chat.entity';
+import { Room } from './entity/room.entity';
 import { AppGateway } from './app.gateway';
+import { User } from './entity/user.entity';
 
 @Module({
   imports: [
@@ -13,10 +15,10 @@ import { AppGateway } from './app.gateway';
       username: 'postgres',
       password: '12345',
       database: 'chat',
-      entities: [Chat],
+      entities: [Chat, Room, User],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Chat]),
+    TypeOrmModule.forFeature([Chat, Room, User]),
   ],
   controllers: [AppController],
   providers: [AppService, AppGateway],

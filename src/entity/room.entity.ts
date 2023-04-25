@@ -3,19 +3,21 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity()
-export class Chat {
+export class Room {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   email: string;
 
-  @Column({ unique: true })
-  text: string;
+  @OneToMany(() => User, (user) => user.room)
+  users: User[];
 
   @CreateDateColumn()
-  createdAt: Date;
+  createAt: Date;
 }
