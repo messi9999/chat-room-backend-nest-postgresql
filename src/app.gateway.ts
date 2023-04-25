@@ -9,7 +9,7 @@ import {
 
 import { Socket, Server } from 'socket.io';
 import { AppService } from './app.service';
-import { Chat } from './chat.entity';
+import { Chat } from './entity/chat.entity';
 
 @WebSocketGateway({
   cors: {
