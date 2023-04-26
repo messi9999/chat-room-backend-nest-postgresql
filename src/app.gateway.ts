@@ -23,6 +23,7 @@ export class AppGateway
 
   @WebSocketServer() server: Server;
 
+  //Handle sending messages and save it to database
   @SubscribeMessage('sendMessage')
   async handleSendMessage(client: Socket, payload: Chat): Promise<void> {
     await this.appService.createMessage(payload);
@@ -33,6 +34,7 @@ export class AppGateway
     console.log(server);
   }
 
+  // Handle connections
   handleDisconnect(client: Socket) {
     console.log(`Disconnected: ${client.id}`);
   }
