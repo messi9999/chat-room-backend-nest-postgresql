@@ -6,6 +6,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { User } from './user.entity';
+import { Chat } from './chat.entity';
 
 @Entity()
 export class Room {
@@ -17,6 +18,9 @@ export class Room {
 
   @OneToMany(() => User, (user) => user.room)
   users: User[];
+
+  @OneToMany(() => Chat, (chat) => chat.room)
+  chats: Chat[];
 
   @CreateDateColumn()
   createAt: Date;

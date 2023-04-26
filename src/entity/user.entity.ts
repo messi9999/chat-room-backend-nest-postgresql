@@ -4,8 +4,10 @@ import {
   Column,
   ManyToOne,
   CreateDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { Room } from './room.entity';
+import { Chat } from './chat.entity';
 
 @Entity()
 export class User {
@@ -17,6 +19,9 @@ export class User {
 
   @ManyToOne(() => Room, (room) => room.users)
   room: Room;
+
+  @OneToMany(() => Chat, (chat) => chat.user)
+  chats: Chat[];
 
   @CreateDateColumn()
   createAt: Date;
